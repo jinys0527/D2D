@@ -1,9 +1,8 @@
-#include "pch.h"
-#include <iostream>
+#include "SceneManager.h"
 
 int main()
 {
-	std::cout << "Hello, Direct2D!" << std::endl;
+	SceneManager sceneManager;
 
 	return 0;
 }

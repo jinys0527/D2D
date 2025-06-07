@@ -1,19 +1,17 @@
 #pragma once
-#include <wrl/client.h>
-using Microsoft::WRL::ComPtr;
+#include "pch.h"
 
-#include <d3d11.h>
-//#include <d3dcompiler.h>
-#include <dxgi1_6.h>
-#include <d2d1_3.h>
-#include <d2d1.h>
-
-class Renderer
+class Renderer : public NzWndBase
 {
 public:
 	Renderer() = default;
 	~Renderer() = default;
+
+	bool Initialize();
+	void Finalize();
 private:
+	void OnResize(int width, int height) override;
+	void OnClose() override;
 
 	bool InitD2DRenderSystem(HWND hwnd);
 	void ReleaseD2DRenderSystem();

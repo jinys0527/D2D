@@ -1,6 +1,36 @@
-#include "pch.h"
 #include "Renderer.h"
 #include "GeometryObject.h"
+
+bool Renderer::Initialize()
+{
+	const wchar_t* className = L"D2DHomework01";
+	const wchar_t* windowName = L"D2DHomework01";
+
+	if (false == __super::Create(className, windowName, 800, 600))
+	{
+		return false;
+	}
+
+	InitD2DRenderSystem(m_hWnd);
+
+	return true;
+}
+
+void Renderer::Finalize()
+{
+	ReleaseD2DRenderSystem();
+
+	__super::Destroy();
+}
+
+void Renderer::OnResize(int width, int height)
+{
+	__super::OnResize(width, height);
+}
+
+void Renderer::OnClose()
+{
+}
 
 bool Renderer::InitD2DRenderSystem(HWND hwnd)
 {
