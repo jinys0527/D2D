@@ -1,34 +1,40 @@
 #include "pch.h"
 #include "GeometryObject.h"
 
-void GeometryObject::GetGeometryInfo(Point& point, int& scale1, int& scale2, Color& color)
+void GeometryObject::GetGeometryInfo(RenderData& data)
 {
-	point = GetCenter();
-	color = GetColor();
+	data.center = GetCenter();
+	data.color = GetColor();
 }
 
-void Line::GetGeometryInfo(Point& point, int& scale1, int& scale2, Color& color)
+void Line::GetGeometryInfo(RenderData& data)
 {
-	__super::GetGeometryInfo(point, scale1, scale2, color);
-	scale1 = m_length;
+	__super::GetGeometryInfo(data);
+	data.scale1 = m_length;
+	data.scale2 = 0;
+	data.shape = RenderData::LINE;
 }
 
-void Rectangle::GetGeometryInfo(Point& point, int& scale1, int& scale2, Color& color)
+void Rectangle::GetGeometryInfo(RenderData& data)
 {
-	__super::GetGeometryInfo(point, scale1, scale2, color);
-	scale1 = m_width;
-	scale2 = m_height;
+	__super::GetGeometryInfo(data);
+	data.scale1 = m_width;
+	data.scale2 = m_height;
+	data.shape = RenderData::RECTANGLE;
 }
 
-void Circle::GetGeometryInfo(Point& point, int& scale1, int& scale2, Color& color)
+void Circle::GetGeometryInfo(RenderData& data)
 {
-	__super::GetGeometryInfo(point, scale1, scale2, color);
-	scale1 = m_radius;
+	__super::GetGeometryInfo(data);
+	data.scale1 = m_radius;
+	data.scale2 = 0;
+	data.shape = RenderData::CIRCLE;
 }
 
-void Triangle::GetGeometryInfo(Point& point, int& scale1, int& scale2, Color& color)
+void Triangle::GetGeometryInfo(RenderData& data)
 {
-	__super::GetGeometryInfo(point, scale1, scale2, color);
-	scale1 = m_width;
-	scale2 = m_height;
+	__super::GetGeometryInfo(data);
+	data.scale1 = m_width;
+	data.scale2 = m_height;
+	data.shape = RenderData::TRIANGLE;
 }

@@ -4,7 +4,7 @@
 
 SceneManager::SceneManager() : m_SceneCount(0), m_CurrentScene(nullptr)
 {
-	renderer.Initialize();
+	m_renderer.Initialize();
 	for (int i = 0; i < MAX_SCENES; ++i)
 	{
 		m_SceneTable[i].id = nullptr;
@@ -14,7 +14,7 @@ SceneManager::SceneManager() : m_SceneCount(0), m_CurrentScene(nullptr)
 
 SceneManager::~SceneManager()
 {
-	renderer.Finalize();
+	m_renderer.Finalize();
 
 	for (int i = 0; i < m_SceneCount; ++i)
 	{
@@ -74,6 +74,10 @@ void SceneManager::Update(float deltaTime)
 
 void SceneManager::Render()
 {
+	std::vector<RenderData> renderList;
 	if (m_CurrentScene)
-		m_CurrentScene->Render();
+	{
+		m_CurrentScene->Render(renderList);
+		m_renderer.RenderFrame(renderList);
+	}
 }

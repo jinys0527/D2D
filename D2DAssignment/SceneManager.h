@@ -17,10 +17,7 @@ public:
 	void Update(float deltaTime);
 
 	void Render();
-
 private:
-	Renderer renderer;
-
 	struct SceneEntry
 	{
 		const char* id;
@@ -31,4 +28,5 @@ private:
 	int        m_SceneCount;
 
 	Scene* m_CurrentScene;
+	Renderer m_renderer;
 };

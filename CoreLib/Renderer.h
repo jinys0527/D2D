@@ -1,5 +1,9 @@
 #pragma once
 #include "pch.h"
+#include "vector"
+#include "GeometryObject.h"
+
+class Scene;
 
 class Renderer : public NzWndBase
 {
@@ -9,6 +13,9 @@ public:
 
 	bool Initialize();
 	void Finalize();
+
+	void RenderFrame(const std::vector<RenderData>& dataList);
+
 private:
 	void OnResize(int width, int height) override;
 	void OnClose() override;
@@ -16,7 +23,7 @@ private:
 	bool InitD2DRenderSystem(HWND hwnd);
 	void ReleaseD2DRenderSystem();
 
-	void RenderFrame();
+	
 
 	ComPtr<ID3D11Device>		m_d3dDevice;
 

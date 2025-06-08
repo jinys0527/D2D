@@ -1,5 +1,5 @@
 #include "Renderer.h"
-#include "GeometryObject.h"
+#include "Scene.h"
 
 bool Renderer::Initialize()
 {
@@ -139,31 +139,29 @@ void Renderer::ReleaseD2DRenderSystem()
 	m_targetBitmap.Reset();
 }
 
-void Renderer::RenderFrame()
+void Renderer::RenderFrame(const std::vector<RenderData>& dataList)
 {
 	if (!m_d2dContext || !m_swapChain)
 		return;
 
 	m_d2dContext->BeginDraw();
 
-	Point point;
-	int scale1;
-	int scale2;
-	Color color;
-	//GeometryObject::GetGeometryInfo(point, scale1, scale2, color);
-	//·»´õ¸µ Á¤º¸
-	/*switch (currentScene)
-	{
-	case Line:
-
-	case Circle:
-
-	case Rectangle:
-
-	case Polygon:
-
+	for (const auto& data : dataList) {
+		switch (data.shape) {
+		case RenderData::LINE:
+			//m_d2dContext->DrawLine(data.center, data.scale1, data.color);
+			break;
+		case RenderData::RECTANGLE:
+			//DrawRectangle(data.center, data.scale1, data.scale2, data.color);
+			break;
+		case RenderData::CIRCLE:
+			//DrawCircle(data.center, data.scale1, data.color);
+			break;
+		case RenderData::TRIANGLE:
+			//DrawTriangle(data.center, data.scale1, data.scale2, data.color);
+			break;
+		}
 	}
-	*/
 
 	m_d2dContext->EndDraw();
 
